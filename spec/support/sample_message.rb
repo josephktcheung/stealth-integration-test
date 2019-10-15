@@ -8,56 +8,32 @@ class SampleMessage
     @base_message
   end
 
-  def message_with_text
+  def message_with_text(message)
     @base_message.message = message
     self
   end
 
-  def message_with_payload
+  def message_with_payload(payload)
     @base_message.payload = payload
-    @base_message
+    self
   end
 
-  def message_with_location
+  def message_with_location(location)
     @base_message.location = location
-    @base_message
+    self
   end
 
-  def message_with_attachments
+  def message_with_attachments(attachments)
     @base_message.attachments = attachments
-    @base_message
+    self
   end
 
   def sender_id
-    if @service == 'twilio'
-      '+15554561212'
-    else
-      "8b3e0a3c-62f1-401e-8b0f-615c9d256b1f"
-    end
+    "8b3e0a3c-62f1-401e-8b0f-615c9d256b1f"
   end
 
   def timestamp
-    Time.now
-  end
-
-  def message
-    "Hello World!"
-  end
-
-  def payload
-    "some_payload"
-  end
-
-  def location
-    { lat: '42.323724' , lng: '-83.047543' }
-  end
-
-  def attachments
-    [ { type: 'image', url: 'https://domain.none/image.jpg' } ]
-  end
-
-  def referral
-    {}
+    @base_message.timestamp || Time.now
   end
 
   def to_request_json

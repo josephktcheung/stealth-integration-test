@@ -18,7 +18,7 @@ describe "chatbot flow" do
   it "handles user conversation" do
     Sidekiq::Testing.inline! do
       expect(client).to receive_message(
-        message.message_with_text
+        message.message_with_text("hello")
       )
         .as_service("facebook")
         .and_send_replies([
@@ -28,6 +28,14 @@ describe "chatbot flow" do
             },
             "message" => {
               "text" => "Hello World!"
+            }
+          },
+          {
+            "recipient" => {
+              "id" => message.sender_id
+            },
+            "message" => {
+              "text" => "Goodbye World!"
             }
           }
         ])
