@@ -35,6 +35,29 @@ describe "chatbot flow" do
               "id" => message.sender_id
             },
             "message" => {
+              "text" => "What's your name?"
+            }
+          }
+        ])
+
+      expect(client).to receive_message(
+        message.message_with_text("Luke Skywalker")
+      )
+        .as_service("facebook")
+        .and_send_replies([
+          {
+            "recipient" => {
+              "id" => message.sender_id
+            },
+            "message" => {
+              "text" => "Nice to meet you Luke Skywalker!"
+            }
+          },
+          {
+            "recipient" => {
+              "id" => message.sender_id
+            },
+            "message" => {
               "text" => "Goodbye World!"
             }
           }
