@@ -3,15 +3,15 @@ require "spec_helper"
 describe "chatbot flow" do
   include Rack::Test::Methods
 
-  let!(:message) { 
+  def app
+    Stealth::Server
+  end
+
+  let(:message) { 
     SampleMessage.new(
       service: "facebook"
     )
   }
-
-  def app
-    Stealth::Server
-  end
 
   let(:client) { Stealth::Services::Facebook::Client }
 
