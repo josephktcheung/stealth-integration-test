@@ -18,9 +18,7 @@ group :development do
 end
 
 group :test do
-  gem "byebug"
   gem "rack-test"
   gem "rspec"
   gem "mock_redis"
-  gem "database_cleaner"
 end
